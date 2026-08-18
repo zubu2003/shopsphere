@@ -1,0 +1,98 @@
+name: shopsphere
+description: "A new Flutter project."
+
+
+publish_to: 'none' 
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.11.0 <4.0.0'
+
+#------packages---------#
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  #utility package
+
+  #icons
+  cupertino_icons: ^1.0.9
+  iconsax: ^0.0.8
+
+  #utility
+  http: ^1.6.0
+  intl: ^0.20.2
+  logger: ^2.7.0
+  url_launcher: ^6.3.2
+  flutter_native_splash: ^2.4.7
+  lottie: ^3.3.3
+  smooth_page_indicator: ^2.0.1
+  carousel_slider: ^5.1.2
+  readmore: ^3.0.0
+  connectivity_plus: ^7.3.0
+  shimmer: ^3.0.0
+  image_picker: ^1.2.3
+  dio: ^5.11.0
+  crypto: ^3.0.7
+  cached_network_image: ^3.4.1
+  path_provider: ^2.1.6
+
+  #state management
+  get: ^4.7.3
+  get_storage: ^2.1.1
+
+  #firebase
+  firebase_core: ^4.12.1
+  firebase_auth: ^6.5.6
+  cloud_firestore: ^6.7.1
+  google_sign_in: ^7.2.0
+
+
+  #product specific
+
+  #------./packages end-------#
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^6.0.0
+
+
+flutter:
+
+  uses-material-design: true
+  #----local assets-----#
+  assets:
+    - assets/logos/
+    - assets/icons/
+    - assets/images/
+    - assets/animations/
+    - assets/icons/categories/
+    - assets/banners/
+    - assets/products/
+    - assets/brands/
+    - assets/icons/payment_methods/
+
+    #----local fonts-----#
+
+  fonts:
+    - family: 'Nunito'
+      fonts:
+        - asset: assets/fonts/Nunito-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Nunito-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Nunito-Italic.ttf
+          style: italic
+        - asset: assets/fonts/Nunito-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Nunito-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/Nunito-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Nunito-Bold.ttf
+          weight: 800

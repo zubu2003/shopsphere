@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "647768681890",
+    "project_id": "shopsphere-64b5f",
+    "storage_bucket": "shopsphere-64b5f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:647768681890:android:96ecfb50c28c0614b956fb",
+        "android_client_info": {
+          "package_name": "com.example.shopsphere"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "647768681890-0jcrs51f1mvnpthruqbobi5gf8k5uda7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shopsphere",
+            "certificate_hash": "a15995ab464610c5d7b2216984b3d1b015795cbd"
+          }
+        },
+        {
+          "client_id": "647768681890-9c0o0k0uv4a0i4bmcaghv49nobb3kjr7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5ICIvVnz390Kb9XFuT1WoRiK5CCcE6io"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "647768681890-9c0o0k0uv4a0i4bmcaghv49nobb3kjr7.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "647768681890-csv9q1v53mjlhejbkp0n1h478imnvp5f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.shopsphere"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
