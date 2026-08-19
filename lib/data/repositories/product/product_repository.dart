@@ -175,5 +175,36 @@ class ProductRepository extends GetxController{
     }
   }
 
+  /// [Fetch] - Function to fetch all list of brand specific products
+  Future<List<ProductModel>> getProductsForBrand({required String brandId,int limit = -1,}) async {
+    try {
+      final query = limit == -1
+          ? await _db
+          .collection(SKeys.productCollection)
+          .where('brand.id', isEqualTo: brandId)
+          .get()
+          : await _db
+          .collection(SKeys.productCollection)
+          .where('brand.id', isEqualTo: brandId)
+          .limit(limit)
+          .get();
+
+      if (query.docs.isNotEmpty) {
+        final products = query.docs.map((document) => ProductModel.fromSnapshot(document)).toList();
+
+        return products;
+      }
+
+      return [];
+    }on SFirebaseException catch(e){
+      throw SFirebaseException(e.code).message;
+    }on FormatException {
+      throw FormatException();
+    }on SPlatformException catch(e){
+      throw SPlatformException(e.code).message;
+    }catch(e){
+      throw e.toString();
+    }
+  }
 
 }

@@ -3,7 +3,9 @@ import 'package:get/get.dart';
 import 'package:shopsphere/data/repositories/brand/brand_repositories.dart';
 import 'package:shopsphere/features/shop/models/brand_model.dart';
 
+import '../../../../data/repositories/product/product_repository.dart';
 import '../../../../utils/popups/snackbar_helpers.dart';
+import '../../models/product_model.dart';
 
 class BrandController extends GetxController{
 
@@ -34,6 +36,22 @@ class BrandController extends GetxController{
       SSnackBarHelpers.errorSnackBar(title: 'Failed!', message: e.toString());
     }finally{
       isloading.value=false;
+    }
+  }
+  /// Get Brand Specific Products
+  Future<List<ProductModel>> getBrandProducts(String brandId) async {
+    try {
+
+      List<ProductModel> products= await ProductRepository.instance.getProductsForBrand(brandId: brandId);
+
+      return products;
+
+    } catch (e) {
+      SSnackBarHelpers.errorSnackBar(
+        title: 'Failed!',
+        message: e.toString(),
+      );
+      return [];
     }
   }
 

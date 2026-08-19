@@ -15,6 +15,8 @@ import '../../../../common/shimmer/brands_shimmer.dart';
 class BrandScreen extends StatelessWidget {
   const BrandScreen({super.key});
 
+
+
   @override
   Widget build(BuildContext context) {
     final brandController=BrandController.instance;
@@ -53,7 +55,10 @@ class BrandScreen extends StatelessWidget {
                         final brand = brandController.allbrands[index];
                         return SBrandCard(
                           brand: brand,
-                          onTap: () => Get.to(() => BrandProductsScreen()),
+                          onTap: () => Get.to(() => BrandProductsScreen(
+                            title: brand.name,
+                            brand: brand,
+                          )),
                         );
                       }
                   );

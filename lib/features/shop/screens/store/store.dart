@@ -13,6 +13,7 @@ import 'package:shopsphere/utils/helper/helper_functions.dart';
 import '../../../../common/appbar/store_tab_Bar.dart';
 import '../../../../common/brand/brand_card.dart';
 import '../../../../common/shimmer/brands_shimmer.dart';
+import '../brands/brand_products.dart';
 
 class StoreScreen extends StatelessWidget {
   const StoreScreen({super.key});
@@ -84,7 +85,12 @@ class StoreScreen extends StatelessWidget {
                                       final brand=brandcontroller.featurebrands[index];
                                       return SizedBox(
                                           width: SSize.brandCardWidth,
-                                          child: SBrandCard(brand: brand,));
+                                          child: SBrandCard(brand: brand,
+                                              onTap:() => Get.to(() => BrandProductsScreen(
+                                            title: brand.name,
+                                            brand: brand,
+                                            )),
+                                          ));
                                     },
                                   );
                                 }
