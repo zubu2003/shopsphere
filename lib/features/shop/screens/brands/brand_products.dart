@@ -26,7 +26,7 @@ class BrandProductsScreen extends StatelessWidget {
               SizedBox(height: SSize.spaceBtwSections,),
 
               //list of brands
-              SSortableProducts(),
+              SSortableProducts(products: [],),
 
             ],
           ),

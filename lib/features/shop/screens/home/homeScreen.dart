@@ -64,7 +64,12 @@ class Homescreen extends StatelessWidget {
                   SPromoSlider(),
         
                     ///section heading
-                  SSectionHeading(title: 'Popular Products',onPressed: ()=>Get.to(()=>AllProductsScreen()),),
+                  SSectionHeading(title: 'Popular Products',
+                    onPressed: ()=>Get.to(()=>AllProductsScreen(
+                      title: 'Popular Products',
+                      futureMethod: productController.getAllFeaturedProduct(),
+                      )
+                    ),),
                     SizedBox(height: SSize.spaceBtwItems,),
                     ///vertical product card
 
