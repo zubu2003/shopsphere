@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/response/response.dart' as dio hide Response;
 import 'package:shopsphere/features/shop/models/brand_model.dart';
 
+import '../../../features/shop/models/brand_category_model.dart';
 import '../../../utils/constant/keys.dart';
 import '../../../utils/exceptions/firebase_exceptions.dart';
 import '../../../utils/exceptions/platform_exceptions.dart';
@@ -72,6 +73,56 @@ class BrandRepository extends GetxController{
       throw "Something went wrong";
     }
   }
+  /// [FetchBrands] - Function to fetch all brands for a specific category
+  Future<List<BrandModel>> fetchBrandForCategory(String categoryId) async {
+    try {
+      // Get all brand-category documents for the specific category
+      final brandCategoryQuery = await _db
+          .collection(SKeys.brandCategoryCollection)
+          .where('categoryId', isEqualTo: categoryId)
+          .get();
+
+      // Convert documents to BrandCategoryModel
+      final List<BrandCategoryModel> brandCategories = brandCategoryQuery.docs
+          .map((document) => BrandCategoryModel.fromSnapshot(document))
+          .toList();
+
+      // Get brand IDs
+      final List<String> brandIds = brandCategories
+          .map((brandCategory) => brandCategory.brandId)
+          .toList();
+
+      // Return empty list if no brand IDs are found
+      if (brandIds.isEmpty) {
+        return [];
+      }
+
+      // Get brands using their Firestore document IDs
+      final brandQuery = await _db
+          .collection(SKeys.brandCollection)
+          .where(
+        FieldPath.documentId,
+        whereIn: brandIds,
+      )
+          .get();
+
+      // Convert documents to BrandModel
+      final List<BrandModel> brands = brandQuery.docs
+          .map((document) => BrandModel.fromSnapshot(document))
+          .toList();
+
+      return brands;
+    } on SFirebaseException catch (e) {
+      throw SFirebaseException(e.code).message;
+    } on FormatException {
+      throw FormatException();
+    } on SPlatformException catch (e) {
+      throw SPlatformException(e.code).message;
+    } catch (e) {
+      throw "Something went wrong";
+    }
+  }
+
 
 
 

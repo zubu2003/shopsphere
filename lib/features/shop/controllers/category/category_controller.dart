@@ -3,6 +3,9 @@ import 'package:shopsphere/data/repositories/category/category_repository.dart';
 import 'package:shopsphere/features/shop/models/category_model.dart';
 import 'package:shopsphere/utils/popups/snackbar_helpers.dart';
 
+import '../../../../data/repositories/product/product_repository.dart';
+import '../../models/product_model.dart';
+
 class CategoryController extends GetxController{
 
   static CategoryController get instance => Get.find();
@@ -39,6 +42,29 @@ class CategoryController extends GetxController{
       isCategoriesLoading.value=false;
     }
   }
+
+  /// Get Category Products
+  Future<List<ProductModel>> getCategoryProducts({
+    required String categoryId,
+    int limit = -1,
+  }) async {
+    try {
+      // Get products for the specific category
+      final products = await ProductRepository.instance
+          .getProductsForCategory(categoryId: categoryId,limit: limit,);
+
+      return products;
+    } catch (e) {
+      // Show error message
+      SSnackBarHelpers.errorSnackBar(
+        title: 'Failed!',
+        message: e.toString(),
+      );
+
+      return [];
+    }
+  }
+
 
 
 }

@@ -6,6 +6,8 @@ class SKeys{
   static const String bannerCollection='Banners';
   static const String brandCollection='Brands';
   static const String productCollection='Products';
+  static const String brandCategoryCollection='BrandCategories';
+  static const String productCategoryCollection='ProductCategories';
 
   //remember login email and pass
   static const String rememberMeEmail='Remember_email';

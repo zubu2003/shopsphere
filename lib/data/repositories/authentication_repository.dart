@@ -42,6 +42,7 @@ class AuthenticationRepository extends GetxController{
     //Get.put(BannerRepository()).uploadBanner(SDummyData.banner);
     //Get.put(ProductRepository().uploadProduct(SDummyData.products));
 
+
   }
 
   void screenRedirect(){

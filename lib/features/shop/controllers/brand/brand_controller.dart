@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:shopsphere/data/repositories/brand/brand_repositories.dart';
 import 'package:shopsphere/features/shop/models/brand_model.dart';
 
+import '../../../../data/repositories/category/category_repository.dart';
 import '../../../../data/repositories/product/product_repository.dart';
 import '../../../../utils/popups/snackbar_helpers.dart';
 import '../../models/product_model.dart';
@@ -39,12 +40,28 @@ class BrandController extends GetxController{
     }
   }
   /// Get Brand Specific Products
-  Future<List<ProductModel>> getBrandProducts(String brandId) async {
+  Future<List<ProductModel>> getBrandProducts(String brandId, {int limit=-1}) async {
     try {
 
-      List<ProductModel> products= await ProductRepository.instance.getProductsForBrand(brandId: brandId);
+      List<ProductModel> products= await ProductRepository.instance.getProductsForBrand(brandId: brandId,limit: limit);
 
       return products;
+
+    } catch (e) {
+      SSnackBarHelpers.errorSnackBar(
+        title: 'Failed!',
+        message: e.toString(),
+      );
+      return [];
+    }
+  }
+
+  /// Get brands for specific category
+  Future<List<BrandModel>> getBrandsForCategory(String categoryId) async {
+    try {
+
+      List<BrandModel> brands= await _repository.fetchBrandForCategory(categoryId);
+      return brands;
 
     } catch (e) {
       SSnackBarHelpers.errorSnackBar(

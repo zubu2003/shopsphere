@@ -25,7 +25,7 @@ class AllProductsScreen extends StatelessWidget {
     return Scaffold(
       appBar: SAppBar(
         showLeading: true,
-        title: Text("Popular Products",style: Theme.of(context).textTheme.headlineMedium,),
+        title: Text(title,style: Theme.of(context).textTheme.headlineMedium,),
       ),
       body: SingleChildScrollView(
         child: Padding(

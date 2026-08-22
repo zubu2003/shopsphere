@@ -1,9 +1,11 @@
 import 'package:shopsphere/routes/routes.dart';
 import 'package:shopsphere/utils/constant/image_string.dart';
 import 'features/shop/models/banners_model.dart';
+import 'features/shop/models/brand_category_model.dart';
 import 'features/shop/models/brand_model.dart';
 import 'features/shop/models/category_model.dart';
 import 'features/shop/models/product_attribute_model.dart';
+import 'features/shop/models/product_category_model.dart';
 import 'features/shop/models/product_model.dart';
 import 'features/shop/models/product_variation_model.dart';
 
@@ -1655,7 +1657,7 @@ class SDummyData {
       description: "Blue Polo Jeans with white Shades of one size only",
     ),
   ];
-  /*
+
 
 
   static final List<BrandCategoryModel> brandCategory = [
@@ -1863,6 +1865,7 @@ class SDummyData {
     // Soccer
     ProductCategoryModel(categoryId: '23', productId: '2'),
   ];
+/*
 
   static final List<PromoCodeModel> promoCodes = [
     PromoCodeModel(

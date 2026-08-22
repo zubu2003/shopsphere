@@ -207,4 +207,68 @@ class ProductRepository extends GetxController{
     }
   }
 
+  /// [Fetch] - Get products for a specific category
+  Future<List<ProductModel>> getProductsForCategory({
+    required String categoryId,
+    int limit = -1,
+  }) async {
+    try {
+      // Get category-product documents
+      final productCategoryQuery = limit == -1
+          ? await _db
+          .collection(SKeys.productCategoryCollection)
+          .where('categoryId', isEqualTo: categoryId)
+          .get()
+          : await _db
+          .collection(SKeys.productCategoryCollection)
+          .where('categoryId', isEqualTo: categoryId)
+          .limit(limit)
+          .get();
+
+      // Get product IDs
+      final List<String> productIds = productCategoryQuery.docs
+          .map((doc) => doc['productId'] as String)
+          .toList();
+
+      // Return empty list if no product IDs are found
+      if (productIds.isEmpty) {
+        return [];
+      }
+
+      // Get products using their document IDs
+      final productQuery = await _db
+          .collection(SKeys.productCollection)
+          .where(
+        FieldPath.documentId,
+        whereIn: productIds,
+      )
+          .get();
+
+      // Convert documents to ProductModel
+      final List<ProductModel> products = productQuery.docs
+          .map((doc) => ProductModel.fromSnapshot(doc))
+          .toList();
+
+      return products;
+    } on SFirebaseException catch (e) {
+      throw SFirebaseException(e.code).message;
+    } on FormatException {
+      throw FormatException();
+    } on SPlatformException catch (e) {
+      throw SPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong';
+    }
+  }
+
+
+
 }
+
+
+
+
+
+
+
+
