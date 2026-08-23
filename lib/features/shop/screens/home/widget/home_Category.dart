@@ -35,7 +35,9 @@ class SHomeCategories extends StatelessWidget {
           //category listview
           Obx(
             (){
-              final categories=controller.allCategories;
+              final categories=controller.allCategories
+                  .where((category) => category.parentId == "")
+                  .toList();
 
               ///[LoadinState]
               if(controller.isCategoriesLoading.value){
@@ -53,7 +55,7 @@ class SHomeCategories extends StatelessWidget {
                 child: ListView.separated(
                   separatorBuilder: (context, index) => SizedBox(width: SSize.spaceBtwItems,),
                   scrollDirection: Axis.horizontal,
-                  itemCount: 10,
+                  itemCount: categories.length,
                   itemBuilder: (context, index) {
 
                     CategoryModel category=categories[index];
@@ -62,7 +64,7 @@ class SHomeCategories extends StatelessWidget {
                       title: category.name,
                       image: category.image,
                       textColor: SColors.white,
-                      onTap: () =>Get.to(()=>SubcategoryScreen()),
+                      onTap: () =>Get.to(()=>SubcategoryScreen(category: category,)),
                     );
                   },
                 ),

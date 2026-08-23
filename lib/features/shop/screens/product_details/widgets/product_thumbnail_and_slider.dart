@@ -9,6 +9,7 @@ import 'package:shopsphere/utils/helper/helper_functions.dart';
 import '../../../../../common/appbar/SAppbar.dart';
 import '../../../../../common/icon/circular_icon.dart';
 import '../../../../../common/images/SRouundImage.dart';
+import '../../../../../common/product/favourite/favourite_icon.dart';
 import '../../../../../utils/constant/colors.dart';
 import '../../../../../utils/constant/image_string.dart';
 import '../../../../../utils/constant/size.dart';
@@ -88,7 +89,7 @@ class SProductThumbnailAndSlider extends StatelessWidget {
           //appbar
           SAppBar(
             showLeading: true,
-            actions: [SCircularIcon(icon: Iconsax.heart5,color: Colors.red,)],
+            actions: [SFavouriteIcon(productId: product.id,),],
           ),
 
         ],

@@ -44,10 +44,7 @@ class CategoryController extends GetxController{
   }
 
   /// Get Category Products
-  Future<List<ProductModel>> getCategoryProducts({
-    required String categoryId,
-    int limit = -1,
-  }) async {
+  Future<List<ProductModel>> getCategoryProducts({required String categoryId, int limit = -1,}) async {
     try {
       // Get products for the specific category
       final products = await ProductRepository.instance
@@ -65,6 +62,18 @@ class CategoryController extends GetxController{
     }
   }
 
+  //get sub category
+  Future<List<CategoryModel>> getSubCategories(String categoryId) async {
+    try{
+
+      final subcategories= await _repository.getSubCategories(categoryId);
+      return subcategories;
+
+    }catch(e) {
+      SSnackBarHelpers.errorSnackBar(title: 'Failed!', message: e.toString());
+      return [];
+    }
+  }
 
 
 }

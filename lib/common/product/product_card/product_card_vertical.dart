@@ -16,6 +16,7 @@ import '../../styles/shadow.dart';
 import '../../texts/brand_title_with_verify_icon.dart';
 import '../../texts/product_price.dart';
 import '../../texts/product_title.dart';
+import '../favourite/favourite_icon.dart';
 
 class SProductCardVertical extends StatelessWidget {
   const SProductCardVertical({
@@ -61,15 +62,12 @@ class SProductCardVertical extends StatelessWidget {
                       child: Text("20%",style: Theme.of(context).textTheme.labelMedium!.apply(color: SColors.dark),),
                     ),
                   ),
+
                   //fav tag
                   Positioned(
                     right: 0,
                     top: 0,
-                    child: SCircularIcon(
-                      icon: Iconsax.heart5,
-                      color: Colors.red,
-
-                    )
+                    child:SFavouriteIcon(productId: product.id),
                   ),
                   SizedBox(height: SSize.spaceBtwItems,),
 

@@ -208,10 +208,7 @@ class ProductRepository extends GetxController{
   }
 
   /// [Fetch] - Get products for a specific category
-  Future<List<ProductModel>> getProductsForCategory({
-    required String categoryId,
-    int limit = -1,
-  }) async {
+  Future<List<ProductModel>> getProductsForCategory({required String categoryId,int limit = -1,}) async {
     try {
       // Get category-product documents
       final productCategoryQuery = limit == -1
@@ -260,6 +257,33 @@ class ProductRepository extends GetxController{
       throw 'Something went wrong';
     }
   }
+
+  /// [FetchFavouriteeProducts]
+  Future< List<ProductModel> > getFavouriteProducts(List<String> productIds)async{
+    try{
+
+      final query = await _db.collection(SKeys.productCollection).where(FieldPath.documentId,whereIn: productIds).get();
+
+      if(query.docs.isNotEmpty) {
+        List<ProductModel> products = query.docs.map((document) =>
+            ProductModel.fromSnapshot(document)).toList();
+        return products;
+      }
+
+      return [];
+
+
+    }on SFirebaseException catch(e){
+      throw SFirebaseException(e.code).message;
+    }on FormatException {
+      throw FormatException();
+    }on SPlatformException catch(e){
+      throw SPlatformException(e.code).message;
+    }catch(e){
+      throw e.toString();
+    }
+  }
+
 
 
 
