@@ -28,7 +28,7 @@ class AuthenticationRepository extends GetxController{
   final _auth=FirebaseAuth.instance;
 
   //current user
-  User? get currentUSer=> _auth.currentUser;
+  User? get currentUser=> _auth.currentUser;
 
   @override
   void onReady() {
@@ -206,7 +206,7 @@ class AuthenticationRepository extends GetxController{
   /// [DeleteUser] -------
   Future<void> deleteUser() async{
     try{
-      await UserRepository.instance.deleteUserRecord(currentUSer!.uid);
+      await UserRepository.instance.deleteUserRecord(currentUser!.uid);
       String publicId=UserController.instance.user.value.publicId;
       if(publicId.isNotEmpty){
         UserRepository.instance.deleteProfilePicture(publicId);
@@ -230,7 +230,7 @@ class AuthenticationRepository extends GetxController{
     try{
       AuthCredential credential= EmailAuthProvider.credential(email: email, password: password);
 
-      await currentUSer?.reauthenticateWithCredential(credential);
+      await currentUser?.reauthenticateWithCredential(credential);
 
     } on FirebaseAuthException catch(e){
       throw SFirebaseAuthException(e.code).message;

@@ -12,7 +12,7 @@ class FavouriteController extends GetxController {
 
   /// Variables
   RxMap<String, bool> favourites = <String, bool>{}.obs;
-  final _storage=GetStorage(AuthenticationRepository.instance.currentUSer!.uid);
+  final _storage=GetStorage(AuthenticationRepository.instance.currentUser!.uid);
 
 
   @override
