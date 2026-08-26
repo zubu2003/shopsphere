@@ -68,7 +68,7 @@ class ProductDetailsScreen extends StatelessWidget {
       ),
 
       //bottom cart button
-      bottomNavigationBar: BottomAddToCart(),
+      bottomNavigationBar: BottomAddToCart(product: product,),
     );
   }
 }

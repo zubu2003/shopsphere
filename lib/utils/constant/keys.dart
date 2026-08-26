@@ -27,5 +27,7 @@ class SKeys{
   static const String brandFolder='Brand_Pictures';
   static const String productFolder='Product_Pictures';
 
+  static const String cartItemsKey='cartItems';
+
 
 }

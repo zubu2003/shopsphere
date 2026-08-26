@@ -28,7 +28,7 @@ class SStorePrimaryHeader extends StatelessWidget {
           child: SAppBar(
             title: Text("Store",style: Theme.of(context).textTheme.headlineMedium!.apply(color: SColors.white),),
             actions: [
-              SCartCounterIcon(dark: dark)
+              SCartCounterIcon()
             ],
           ),
         ),

@@ -10,6 +10,7 @@ class SImages{
   static const String onboardingAnimation2= "assets/animations/cart.json";
   static const String onboardingAnimation3= "assets/animations/delivery.json";
   static const String pencilAnimation= "assets/animations/pencil_drawing.json";
+  static const String cartEmptyAnimation= "assets/animations/cart_empty.json";
 
   static const String fbIcon= "assets/icons/facebook_icon.png";
   static const String googleIcon= "assets/icons/google_icon.png";

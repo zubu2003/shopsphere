@@ -8,10 +8,11 @@ import '../../../../../utils/helper/helper_functions.dart';
 
 class SProductQuantityWithAddRemove extends StatelessWidget {
   const SProductQuantityWithAddRemove({
-    super.key,
+    super.key, required this.quantity, this.add, this.remove,
   });
 
-
+  final int quantity;
+  final VoidCallback? add, remove;
 
   @override
   Widget build(BuildContext context) {
@@ -19,18 +20,19 @@ class SProductQuantityWithAddRemove extends StatelessWidget {
     return Row(
       children: [
         SizedBox(width: 70,),
-        /// Increment Button
+        /// Decrement Button
         SCircularIcon(
           icon: Iconsax.minus, width: 32,height: 32,
           size: SSize.iconSm,
           color: dark ? SColors.white : SColors.black,
           backgroundColor: dark ? SColors.darkerGrey : SColors.light,
+          onPressed: remove,
         ), // UCircutarIcon
         SizedBox(width: SSize.spaceBtwItems),
 
         /// Counter Text
         Text(
-            '2',
+            quantity.toString(),
             style: Theme
                 .of(context)
                 .textTheme
@@ -38,10 +40,13 @@ class SProductQuantityWithAddRemove extends StatelessWidget {
         ), // Text
         SizedBox(width: SSize.spaceBtwItems),
 
-        SCircularIcon(icon: Iconsax.add, width: 32,height: 32,
+        /// increment Button
+        SCircularIcon(
+          icon: Iconsax.add, width: 32,height: 32,
           size: SSize.iconSm,
           color: SColors.white,
           backgroundColor: SColors.primary,
+          onPressed: add,
         ),
       ],
     );

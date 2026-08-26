@@ -57,7 +57,13 @@ class AddressController extends GetxController {
         state: state.text.trim(),
         country: country.text.trim(),
         dateTime: DateTime.now(),
+        selectedAddress: true,
       );
+
+      // If we are adding a new selected address, we must deselect the current one in the database
+      if(selectedAddress.value.id.isNotEmpty){
+        await _repository.updateSelectedField(selectedAddress.value.id, false);
+      }
 
       /// add address to firebase
       String addressId= await _repository.addAddress(address);
@@ -73,7 +79,11 @@ class AddressController extends GetxController {
       //reset field
       resetFormFields();
 
+      // Toggle refresh so that the FutureBuilder in AddressScreen rebuilds
+      refreshData.toggle();
+
       ///go back
+      Get.back();
       Get.back();
 
       /// show success snackbar
@@ -106,6 +116,7 @@ class AddressController extends GetxController {
     postalCode.clear();
     city.clear();
     state.clear();
+    country.clear();
 
     addressFormkey.currentState!.reset();
   }

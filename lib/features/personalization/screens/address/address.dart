@@ -17,50 +17,47 @@ class AddressScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller=Get.put(AddressController());
+    final controller = Get.put(AddressController());
 
     return Scaffold(
       appBar: SAppBar(
-        title: Text("Address",style: Theme.of(context).textTheme.headlineMedium),
+        title: Text("Address", style: Theme.of(context).textTheme.headlineMedium),
         showLeading: true,
       ),
       body: Padding(
-          padding: SPadding.screenPadding,
-        child: FutureBuilder(
+        padding: SPadding.screenPadding,
+        child: Obx(
+          () => FutureBuilder(
+            /// Use the refreshData value as a key to force rebuild when it changes
+            key: Key(controller.refreshData.value.toString()),
             future: controller.getAllAdresses(),
-            builder: (context,snapshot){
-
+            builder: (context, snapshot) {
               /// Handle Error, Loading, Empty
               final widget = SCloudHelperFunctions.checkMultiRecordState(snapshot: snapshot);
-              if(widget != null) return widget;
+              if (widget != null) return widget;
 
-              ///data found
-              List<AddressModel> adresses=snapshot.data!;
+              /// data found
+              List<AddressModel> adresses = snapshot.data!;
 
               return ListView.separated(
-                  itemCount: adresses.length,
-                  separatorBuilder: (contex,snapshot)=> SizedBox(height: SSize.spaceBtwItems,),
-                  itemBuilder: (contex,index){
-                    return  SSingleAddress(
-                      address: adresses[index],
-                      onTap: ()=> controller.selectAddress(adresses[index])
-                    );
-                 },
+                itemCount: adresses.length,
+                separatorBuilder: (contex, snapshot) => SizedBox(height: SSize.spaceBtwItems),
+                itemBuilder: (contex, index) {
+                  return SSingleAddress(
+                    address: adresses[index],
+                    onTap: () => controller.selectAddress(adresses[index]),
+                  );
+                },
               );
-            }
-        )
+            },
+          ),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
-          onPressed: ()=> Get.to(()=>AddNewAddressScreen()),
+        onPressed: () => Get.to(() => AddNewAddressScreen()),
         backgroundColor: SColors.primary,
-        child: Icon(Iconsax.add,color: SColors.white,),
+        child: Icon(Iconsax.add, color: SColors.white),
       ),
     );
   }
 }
-
-
-
-
-
-

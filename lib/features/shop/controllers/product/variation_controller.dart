@@ -3,6 +3,7 @@ import 'package:shopsphere/features/shop/controllers/product/image_controller.da
 import 'package:shopsphere/features/shop/models/product_variation_model.dart';
 
 import '../../models/product_model.dart';
+import '../cart/cart_controller.dart';
 
 class VariationController extends GetxController {
   static VariationController get instance => Get.find();
@@ -28,6 +29,17 @@ class VariationController extends GetxController {
     if(selectedVariation.image.isNotEmpty){
       ImageController.instance.selectedProductImage.value=selectedVariation.image;
     }
+
+    if (selectedVariation.id.isNotEmpty) {
+      final cartController = CartController.instance;
+
+      cartController.productQuantityInCart.value =
+          cartController.getVariationQuantityInCart(
+            product.id,
+            selectedVariation.id,
+          );
+    }
+
 
     /// Assign selected variation to Rx var
     this.selectedVariation(selectedVariation);
@@ -79,6 +91,13 @@ class VariationController extends GetxController {
   void getProductVariationStockStatus() {
     variationStockStatus.value =
     selectedVariation.value.stock > 0 ? 'In Stock' : 'Out of Stock';
+  }
+
+  //reset selected Attributes when switching products
+  void resetSelectedAttributes(){
+    selectedAttributes.clear();
+    selectedVariation.value=ProductVariationModel.empty();
+    variationStockStatus.value='';
   }
 
 }

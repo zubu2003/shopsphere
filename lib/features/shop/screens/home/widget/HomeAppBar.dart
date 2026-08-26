@@ -45,7 +45,7 @@ class SHomeAppBar extends StatelessWidget {
       ),
 
       actions: [
-        SCartCounterIcon(dark: dark)
+        SCartCounterIcon()
       ],
     );
   }

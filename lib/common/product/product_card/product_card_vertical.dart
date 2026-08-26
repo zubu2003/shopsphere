@@ -4,6 +4,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:shopsphere/common/custom_shapes/rounded_container.dart';
 import 'package:shopsphere/common/icon/circular_icon.dart';
 import 'package:shopsphere/common/images/SRouundImage.dart';
+import 'package:shopsphere/common/widgets/button/add_to_cart.dart';
 import 'package:shopsphere/features/shop/controllers/product/product_controller.dart';
 import 'package:shopsphere/features/shop/models/product_model.dart';
 import 'package:shopsphere/features/shop/screens/product_details/product_details.dart';
@@ -105,18 +106,10 @@ class SProductCardVertical extends StatelessWidget {
                   padding: const EdgeInsets.only(left: SSize.sm),
                   child: SProductPrice(price: productController.getProductPrice(product),),
                 ),
-                Container(
-                  height: SSize.iconLg *1.2,
-                  width: SSize.iconLg *1.2,
-                  decoration: BoxDecoration(
-                    color: SColors.primary,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(SSize.productImageRadius),
-                      bottomRight: Radius.circular(SSize.productImageRadius),
-                    ),
-                  ),
-                  child: Icon(Iconsax.add,color: Colors.white),
-                ),
+
+                // Add button
+                ProductAddToCartButton(product : product)
+
               ],
             ),
 
