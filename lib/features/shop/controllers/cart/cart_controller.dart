@@ -87,14 +87,15 @@ class CartController extends GetxController {
     item.productId == selectedCartItems.productId &&
         selectedCartItems.variationId == item.variationId);
     if (index >= 0) {
-      cartItems[index].quantity += productQuantityInCart.value;
+      cartItems[index].quantity = productQuantityInCart.value;
     } else {
       cartItems.add(selectedCartItems);
     }
 
 
-    //update
 
+    //update
+    updateCart();
     //show snackbar
     SSnackBarHelpers.customToast(
         message: "Your product has been added to the cart");

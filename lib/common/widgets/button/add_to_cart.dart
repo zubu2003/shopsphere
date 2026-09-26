@@ -17,7 +17,7 @@ class ProductAddToCartButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cartController=CartController.instance;
+    final cartController=Get.put(CartController());
 
     return InkWell(
       onTap: (){
