@@ -97,6 +97,33 @@ class ProductRepository extends GetxController{
     }
   }
 
+  /// [FetchAllProducts]
+  Future< List<ProductModel> > fetchAllProducts()async{
+    try{
+
+      final query = await _db.collection(SKeys.productCollection).get();
+
+      if(query.docs.isNotEmpty) {
+        List<ProductModel> products = query.docs.map((document) =>
+            ProductModel.fromSnapshot(document)).toList();
+        return products;
+      }
+
+      return [];
+
+
+    }on SFirebaseException catch(e){
+      throw SFirebaseException(e.code).message;
+    }on FormatException {
+      throw FormatException();
+    }on SPlatformException catch(e){
+      throw SPlatformException(e.code).message;
+    }catch(e){
+      throw e.toString();
+    }
+  }
+
+
   /// [FetchFeatureProducts]
   Future< List<ProductModel> > fetchFeatureProducts()async{
     try{
