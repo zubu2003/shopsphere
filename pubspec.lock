@@ -326,6 +326,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_branch_sdk:
+    dependency: "direct main"
+    description:
+      name: flutter_branch_sdk
+      sha256: e1e05b9980d287e09d18b88e6a38796618b4b146b9499c73114d9ddd8800151a
+      url: "https://pub.dev"
+    source: hosted
+    version: "9.3.4+1"
   flutter_cache_manager:
     dependency: transitive
     description:
