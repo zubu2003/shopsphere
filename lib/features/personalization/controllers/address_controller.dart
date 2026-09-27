@@ -4,10 +4,14 @@ import 'package:get/get.dart';
 import 'package:shopsphere/common/loaders/circular_loader.dart';
 import 'package:shopsphere/utils/popups/snackbar_helpers.dart';
 
+import '../../../common/texts/section_heading.dart';
 import '../../../data/repositories/address/address_repository.dart';
+import '../../../utils/constant/size.dart';
+import '../../../utils/helper/cloud_helper_functions.dart';
 import '../../../utils/helper/network_manager.dart';
 import '../../../utils/popups/full_screen_loader.dart';
 import '../models/address_model.dart';
+import '../screens/address/widgets/single_address.dart';
 
 class AddressController extends GetxController {
   static AddressController get instance => Get.find();
@@ -153,6 +157,70 @@ class AddressController extends GetxController {
       SSnackBarHelpers.errorSnackBar(title: "Error",message: e.toString());
     }
   }
+
+
+  Future<void> selectNewAddressBottomSheet(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      builder: (context) => SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.all(SSize.lg),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SSectionHeading(
+                title: 'Select Address',
+                actionButton: false,
+              ),
+
+              const SizedBox(
+                height: SSize.spaceBtwItems,
+              ),
+
+              FutureBuilder(
+                future: getAllAdresses(),
+                builder: (context, snapshot) {
+
+                  // Handle error, loading and empty states
+                  final widget = SCloudHelperFunctions.checkMultiRecordState(snapshot: snapshot,
+                  );
+
+                  if (widget != null) {
+                    return widget;
+                  }
+
+
+                  return ListView.separated(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: snapshot.data!.length,
+
+                    separatorBuilder: (context, index) =>
+                    const SizedBox(
+                      height: SSize.spaceBtwItems,
+                    ),
+
+                    itemBuilder: (context, index) {
+                      final address = snapshot.data![index];
+
+                      return SSingleAddress(
+                        address: address,
+                        onTap: () {
+                          selectedAddress(address);
+                          Get.back();
+                        },
+                      );
+                    },
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
 
 
 

@@ -24,7 +24,7 @@ dependencies:
 
   #utility
   http: ^1.6.0
-  intl: ^0.20.2
+  intl: ^0.20.3
   logger: ^2.7.0
   url_launcher: ^6.3.2
   flutter_native_splash: ^2.4.7
@@ -39,6 +39,7 @@ dependencies:
   crypto: ^3.0.7
   cached_network_image: ^3.4.1
   path_provider: ^2.1.6
+
 
   #state management
   get: ^4.7.3

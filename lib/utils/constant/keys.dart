@@ -9,6 +9,7 @@ class SKeys{
   static const String brandCategoryCollection='BrandCategories';
   static const String productCategoryCollection='ProductCategories';
   static const String addressCollection='Addresses';
+  static const String orderCollection='Order';
 
   //remember login email and pass
   static const String rememberMeEmail='Remember_email';
